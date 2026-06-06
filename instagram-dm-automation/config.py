@@ -89,16 +89,16 @@ SKIP_USERNAME_PATTERNS = [
 # Multiple templates are rotated to avoid detection.
 DM_TEMPLATES = [
     # Template 1 — product is strong, content doesn't match it
-    "ngl {username} the product is genuinely one of the most compelling things in this space rn — but the content still feels more lifestyle / product showcase than internet-native stuff that actually hits\n\nme and my team already have a few concepts in mind and we'd love to make a couple free creatives just to show the vision. no strings attached — we genuinely think you're leaving reach on the table",
+    "ngl {brand_name} the product is genuinely one of the most compelling things in this space rn — but the content still feels more lifestyle / product showcase than internet-native stuff that actually hits\n\nme and my team already have a few concepts in mind and we'd love to make a couple free creatives just to show the vision. no strings attached — we genuinely think you're leaving reach on the table",
 
     # Template 2 — farm/founder/origin story angle
-    "think the whole origin story behind {username} could seriously resonate with gen z with the right short-form ugc leaning into that farm-to-bag / founder authenticity. me and my team already have a few concepts in mind and we'd love to make a couple free creatives just to show the vision. no strings attached — we genuinely think you're leaving reach on the table",
+    "think the whole origin story behind {brand_name} could seriously resonate with gen z with the right short-form ugc leaning into that farm-to-bag / founder authenticity. me and my team already have a few concepts in mind and we'd love to make a couple free creatives just to show the vision. no strings attached — we genuinely think you're leaving reach on the table",
 
     # Template 3 — clean label / no seed oils / tiktok culture
-    "ngl the whole clean label angle you have going is genuinely one of the strongest positioning plays in the space rn — but the content still feels more product showcase than internet-native storytelling that actually converts\n\nme and my team already have a few concepts and would love to make a couple free creatives just to show the vision. no strings attached",
+    "ngl the whole clean label angle {brand_name} has going is genuinely one of the strongest positioning plays in the space rn — but the content still feels more product showcase than internet-native storytelling that actually converts\n\nme and my team already have a few concepts and would love to make a couple free creatives just to show the vision. no strings attached",
 
     # Template 4 — brand deserves better content
-    "came across {username} and the brand is genuinely sick — product, packaging, story. but the content doesn't do it justice yet. we were brainstorming some hard-hitting, internet-native creative ideas that lean into what makes you different and we'd love to make a couple for free just to show the vision. no strings attached — this brand deserves content as raw as the ingredients",
+    "came across {brand_name} and the brand is genuinely sick — product, packaging, story. but the content doesn't do it justice yet. we were brainstorming some hard-hitting, internet-native creative ideas that lean into what makes you different and we'd love to make a couple for free just to show the vision. no strings attached — this brand deserves content as raw as the ingredients",
 ]
 
 # ── Database path ────────────────────────────────────────────────────────────

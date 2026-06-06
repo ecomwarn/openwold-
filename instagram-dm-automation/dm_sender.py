@@ -20,6 +20,24 @@ from config import (
 log = logging.getLogger(__name__)
 
 
+def _derive_brand_name(full_name: str, username: str) -> str:
+    """
+    Use the account's display name when it looks like a real brand name,
+    otherwise fall back to a cleaned-up version of the username.
+    e.g. full_name="Marrow Foods" → "Marrow Foods"
+         full_name=""             → "marrowfoods" → "marrow foods" (spaced)
+    """
+    name = (full_name or "").strip()
+    # Reject generic/personal names that aren't useful as brand references
+    # (single word under 4 chars, or all lowercase with no spaces → probably a handle copy)
+    if name and len(name) > 3 and not name.islower():
+        return name
+    # Fall back: insert spaces before capital letters or just use the username as-is
+    import re
+    cleaned = re.sub(r"[_.\-]", " ", username).strip()
+    return cleaned
+
+
 def _pick_template(idx: int | None = None) -> tuple[int, str]:
     if idx is None:
         idx = random.randint(0, len(DM_TEMPLATES) - 1)
@@ -109,8 +127,9 @@ async def run_dm_session():
                 break
 
             username = row["username"]
+            brand_name = _derive_brand_name(row["full_name"], username)
             tmpl_idx, message = _pick_template()
-            message = message.replace("{username}", username)
+            message = message.replace("{brand_name}", brand_name)
 
             success = await _send_dm(page, username, message)
 
