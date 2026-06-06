@@ -1,5 +1,6 @@
 """
 Sends DMs to approved accounts using a logged-in Playwright session.
+Generates a personalized message per account via Claude API.
 Respects daily limits and uses randomized human-like delays.
 """
 
@@ -9,49 +10,23 @@ import logging
 from playwright.async_api import async_playwright, Page
 
 import database
+import message_generator
 from scraper import login, _random_delay
 from config import (
     DMS_PER_DAY,
     MIN_DELAY_BETWEEN_DMS_SECONDS,
     MAX_DELAY_BETWEEN_DMS_SECONDS,
-    DM_TEMPLATES,
 )
 
 log = logging.getLogger(__name__)
 
 
-def _derive_brand_name(full_name: str, username: str) -> str:
-    """
-    Use the account's display name when it looks like a real brand name,
-    otherwise fall back to a cleaned-up version of the username.
-    e.g. full_name="Marrow Foods" → "Marrow Foods"
-         full_name=""             → "marrowfoods" → "marrow foods" (spaced)
-    """
-    name = (full_name or "").strip()
-    # Reject generic/personal names that aren't useful as brand references
-    # (single word under 4 chars, or all lowercase with no spaces → probably a handle copy)
-    if name and len(name) > 3 and not name.islower():
-        return name
-    # Fall back: insert spaces before capital letters or just use the username as-is
-    import re
-    cleaned = re.sub(r"[_.\-]", " ", username).strip()
-    return cleaned
-
-
-def _pick_template(idx: int | None = None) -> tuple[int, str]:
-    if idx is None:
-        idx = random.randint(0, len(DM_TEMPLATES) - 1)
-    return idx, DM_TEMPLATES[idx]
-
-
 async def _send_dm(page: Page, username: str, message: str) -> bool:
     """Open Instagram DM compose and send a message to `username`."""
     try:
-        # Navigate to the user's profile
         await page.goto(f"https://www.instagram.com/{username}/", wait_until="networkidle", timeout=15_000)
         await _random_delay(page, 2, 4)
 
-        # Click "Message" button on profile
         msg_btn = page.locator('div[role="button"]:has-text("Message"), button:has-text("Message")')
         if not await msg_btn.first.is_visible(timeout=5_000):
             log.warning(f"@{username}: No Message button found (private/blocked?)")
@@ -60,7 +35,6 @@ async def _send_dm(page: Page, username: str, message: str) -> bool:
         await msg_btn.first.click()
         await _random_delay(page, 2, 3)
 
-        # Type the message in the DM text box
         text_box = page.locator(
             'div[contenteditable="true"][role="textbox"], '
             'textarea[placeholder*="Message"]'
@@ -76,8 +50,6 @@ async def _send_dm(page: Page, username: str, message: str) -> bool:
             await text_box.type(char, delay=random.randint(30, 90))
 
         await _random_delay(page, 1, 2)
-
-        # Send via Enter key
         await text_box.press("Enter")
         await _random_delay(page, 2, 3)
 
@@ -106,8 +78,7 @@ async def run_dm_session():
         log.info("No approved accounts in queue. Run scraper first.")
         return
 
-    log.info(f"Starting DM session. Daily cap: {DMS_PER_DAY}, sent today: {already_sent}, "
-             f"queue size: {len(queue)}")
+    log.info(f"Starting DM session. Cap: {DMS_PER_DAY}, sent today: {already_sent}, queue: {len(queue)}")
 
     async with async_playwright() as pw:
         browser = await pw.chromium.launch(headless=True, args=["--no-sandbox"])
@@ -127,20 +98,22 @@ async def run_dm_session():
                 break
 
             username = row["username"]
-            brand_name = _derive_brand_name(row["full_name"], username)
-            tmpl_idx, message = _pick_template()
-            message = message.replace("{brand_name}", brand_name)
+            account_data = dict(row)
+
+            # Generate a personalized DM for this specific account
+            log.info(f"Generating DM for @{username}...")
+            message = message_generator.generate_dm(account_data)
+            log.info(f"  Message: {message[:80]}...")
 
             success = await _send_dm(page, username, message)
 
             if success:
-                database.mark_dm_sent(username, tmpl_idx)
+                database.mark_dm_sent(username, template_idx=0)
                 sent_count += 1
-                log.info(f"[{sent_count}/{remaining}] Sent DM to @{username}")
+                log.info(f"[{sent_count}/{remaining}] ✓ @{username}")
             else:
                 database.mark_dm_failed(username, "send_failed")
 
-            # Human-like pause between DMs
             delay = random.randint(MIN_DELAY_BETWEEN_DMS_SECONDS, MAX_DELAY_BETWEEN_DMS_SECONDS)
             log.info(f"Waiting {delay}s before next DM...")
             await asyncio.sleep(delay)

@@ -4,8 +4,12 @@ Edit the values here to control targeting, messaging, and rate limits.
 """
 
 # ── Instagram credentials ────────────────────────────────────────────────────
-INSTAGRAM_USERNAME = ""   # your IG username
-INSTAGRAM_PASSWORD = ""   # your IG password
+INSTAGRAM_USERNAME = "oishicreatives"
+INSTAGRAM_PASSWORD = "Minecraft#4"
+
+# ── Anthropic API key (for per-account personalized DMs) ────────────────────
+# Get one at https://console.anthropic.com
+ANTHROPIC_API_KEY = ""  # paste your key here
 
 # ── Rate limits ──────────────────────────────────────────────────────────────
 DMS_PER_DAY = 100
@@ -19,14 +23,12 @@ FILTER = {
     "max_followers": 10_000,
     "min_engagement_rate": 0.02,      # 2%
     "min_posts_per_week": 3,
-    "require_shopify": False,          # set True to hard-require Shopify site
-    "require_tiktok": False,           # set True to hard-require TikTok presence
-    "max_score_to_skip": 3,           # accounts scoring below this are skipped
+    "require_shopify": False,
+    "require_tiktok": False,
+    "max_score_to_skip": 3,
 }
 
-# ── Scoring rules (each matched criterion adds points) ───────────────────────
-# Score is computed in analyzer.py. Higher = better match.
-# Minimum passing score is set by FILTER["max_score_to_skip"].
+# ── Scoring rules ────────────────────────────────────────────────────────────
 SCORE_WEIGHTS = {
     "followers_in_range": 2,
     "engagement_above_threshold": 3,
@@ -34,12 +36,12 @@ SCORE_WEIGHTS = {
     "has_shopify_site": 3,
     "active_on_tiktok": 2,
     "niche_match": 3,
-    "recently_active": 1,             # posted in the last 7 days
+    "recently_active": 1,
     "has_website_in_bio": 1,
 }
 
-# ── Niche targeting ──────────────────────────────────────────────────────────
-# Hashtags to scrape for candidate accounts
+# ── Discovery sources ────────────────────────────────────────────────────────
+# Hashtags — posts under these tags will be scraped for brand accounts
 TARGET_HASHTAGS = [
     "cpgbrand",
     "wellnessbrand",
@@ -55,51 +57,73 @@ TARGET_HASHTAGS = [
     "dtcbrand",
     "ecommercebrand",
     "shopifystore",
+    "founderlife",
+    "bootstrappedfounder",
+    "cpgfounder",
+    "brandbuilder",
+    "consumerbrand",
 ]
 
-# Competitor / niche accounts whose followers we will scrape
+# Instagram search terms — used with the IG search bar to find accounts
+TARGET_SEARCH_TERMS = [
+    "wellness brand",
+    "supplement brand",
+    "protein snack",
+    "clean snack",
+    "functional food",
+    "cpg brand",
+    "healthy snack brand",
+    "fitness supplement",
+    "primal nutrition",
+    "organic protein",
+]
+
+# Competitor / niche accounts — their followers + suggested accounts get scraped
 TARGET_COMPETITOR_ACCOUNTS = [
-    # Add competitor IG usernames here, e.g.:
-    # "ryse_supplements",
+    # Add usernames of brands your targets follow/look up to, e.g.:
     # "poppi",
     # "olipop",
+    # "ryse_supplements",
+    # "magicspoon",
+]
+
+# Explore page niche tags to browse (Instagram Explore topic pages)
+TARGET_EXPLORE_TOPICS = [
+    "fitness",
+    "wellness",
+    "nutrition",
+    "health",
 ]
 
 # Bio keywords that signal a good fit
 BIO_POSITIVE_KEYWORDS = [
     "founder", "ceo", "co-founder", "brand", "wellness", "supplement",
     "nutrition", "snack", "fitness", "health", "protein", "organic",
-    "plant-based", "keto", "vegan", "clean", "functional",
+    "plant-based", "keto", "vegan", "clean", "functional", "primal",
+    "grass-fed", "collagen", "creatine", "colostrum", "adaptogen",
+    "nootropic", "gut health", "seed oil free", "no seed oils",
 ]
 
-# Bio keywords that signal a bad fit → skip account
+# Bio keywords that disqualify
 BIO_NEGATIVE_KEYWORDS = [
     "agency", "marketing agency", "dropship", "dropshipping", "aliexpress",
-    "print on demand", "reseller",
+    "print on demand", "reseller", "mlm", "network marketing",
 ]
 
 # Username patterns to skip (regex)
 SKIP_USERNAME_PATTERNS = [
-    r"official$",          # large corporate handles often end with 'official'
-    r"^the[a-z]+brand$",   # generic brand pattern
+    r"official$",
+    r"^the[a-z]+brand$",
 ]
 
-# ── DM message templates ─────────────────────────────────────────────────────
-# Use {username} as a placeholder for the account's handle.
-# Multiple templates are rotated to avoid detection.
-DM_TEMPLATES = [
-    # Template 1 — product is strong, content doesn't match it
-    "ngl {brand_name} the product is genuinely one of the most compelling things in this space rn — but the content still feels more lifestyle / product showcase than internet-native stuff that actually hits\n\nme and my team already have a few concepts in mind and we'd love to make a couple free creatives just to show the vision. no strings attached — we genuinely think you're leaving reach on the table",
-
-    # Template 2 — farm/founder/origin story angle
-    "think the whole origin story behind {brand_name} could seriously resonate with gen z with the right short-form ugc leaning into that farm-to-bag / founder authenticity. me and my team already have a few concepts in mind and we'd love to make a couple free creatives just to show the vision. no strings attached — we genuinely think you're leaving reach on the table",
-
-    # Template 3 — clean label / no seed oils / tiktok culture
-    "ngl the whole clean label angle {brand_name} has going is genuinely one of the strongest positioning plays in the space rn — but the content still feels more product showcase than internet-native storytelling that actually converts\n\nme and my team already have a few concepts and would love to make a couple free creatives just to show the vision. no strings attached",
-
-    # Template 4 — brand deserves better content
-    "came across {brand_name} and the brand is genuinely sick — product, packaging, story. but the content doesn't do it justice yet. we were brainstorming some hard-hitting, internet-native creative ideas that lean into what makes you different and we'd love to make a couple for free just to show the vision. no strings attached — this brand deserves content as raw as the ingredients",
-]
+# ── Who we are (injected into the AI prompt for personalized DMs) ────────────
+OUR_AGENCY_DESCRIPTION = """
+We're a small creative team (oishi creatives) that makes internet-native short-form content
+for CPG, wellness, supplement, snack, and fitness brands. We specialize in UGC,
+creator-style videos, and hard-hitting social ads that actually convert — not just
+polished brand content. We offer a few free creatives upfront to show the vision,
+no strings attached.
+"""
 
 # ── Database path ────────────────────────────────────────────────────────────
 DB_PATH = "dm_automation.db"
