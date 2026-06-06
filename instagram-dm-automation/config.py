@@ -88,13 +88,17 @@ SKIP_USERNAME_PATTERNS = [
 # Use {username} as a placeholder for the account's handle.
 # Multiple templates are rotated to avoid detection.
 DM_TEMPLATES = [
-    "Hey {username}! Love what you're building 🙌 Your brand caught my eye — we help brands like yours scale with high-converting UGC & creator content. Would love to share a quick case study if you're open to it?",
+    # Template 1 — product is strong, content doesn't match it
+    "ngl {username} the product is genuinely one of the most compelling things in this space rn — but the content still feels more lifestyle / product showcase than internet-native stuff that actually hits\n\nme and my team already have a few concepts in mind and we'd love to make a couple free creatives just to show the vision. no strings attached — we genuinely think you're leaving reach on the table",
 
-    "Hi {username}! Your products look amazing. We specialize in helping CPG brands get more traction with content that actually converts. Mind if I send over some examples?",
+    # Template 2 — farm/founder/origin story angle
+    "think the whole origin story behind {username} could seriously resonate with gen z with the right short-form ugc leaning into that farm-to-bag / founder authenticity. me and my team already have a few concepts in mind and we'd love to make a couple free creatives just to show the vision. no strings attached — we genuinely think you're leaving reach on the table",
 
-    "Hey {username} 👋 Came across your brand and really liked the direction. We work with growing wellness/fitness brands on content strategy & UGC. Open to a quick chat?",
+    # Template 3 — clean label / no seed oils / tiktok culture
+    "ngl the whole clean label angle you have going is genuinely one of the strongest positioning plays in the space rn — but the content still feels more product showcase than internet-native storytelling that actually converts\n\nme and my team already have a few concepts and would love to make a couple free creatives just to show the vision. no strings attached",
 
-    "Hi {username}! We help brands in the wellness/supplement space create content that drives real sales. Your account seems like a great fit — would love to connect!",
+    # Template 4 — brand deserves better content
+    "came across {username} and the brand is genuinely sick — product, packaging, story. but the content doesn't do it justice yet. we were brainstorming some hard-hitting, internet-native creative ideas that lean into what makes you different and we'd love to make a couple for free just to show the vision. no strings attached — this brand deserves content as raw as the ingredients",
 ]
 
 # ── Database path ────────────────────────────────────────────────────────────
