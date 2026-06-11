@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenWolf — A Second Brain for Claude Code</title>
+  <meta name="description" content="OpenWolf gives Claude Code project intelligence, token tracking, and invisible enforcement. Save up to 80% of tokens with zero workflow changes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark">🐺</span>
+        <span class="logo-text">OpenWolf</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Customers</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#" class="btn btn-ghost">Sign in</a>
+        <a href="#pricing" class="btn btn-primary">Get started free</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="badge">✨ New — v1.0 now on npm</div>
+      <h1>A second brain<br /><span class="gradient-text">for Claude Code</span></h1>
+      <p class="hero-sub">
+        Project intelligence, token tracking, and invisible enforcement through six hook scripts.
+        Cut your token spend by up to 80% — with zero workflow changes.
+      </p>
+      <div class="hero-cta">
+        <a href="#pricing" class="btn btn-primary btn-lg">Start free trial</a>
+        <a href="#how-it-works" class="btn btn-outline btn-lg">See how it works</a>
+      </div>
+      <p class="hero-note">No credit card required · Free 14-day trial · Cancel anytime</p>
+
+      <div class="hero-visual">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="terminal-title">terminal</span>
+          </div>
+          <pre class="terminal-body"><code><span class="t-prompt">$</span> npm install -g openwolf
+<span class="t-prompt">$</span> openwolf init
+<span class="t-ok">✓</span> Indexed 1,284 files in 2.1s
+<span class="t-ok">✓</span> 6 hooks installed — zero workflow changes
+<span class="t-ok">✓</span> Token ledger active
+<span class="t-dim">OpenWolf saved ~80% of tokens this session 🎉</span></code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOGOS ============ -->
+  <section class="logos">
+    <div class="container">
+      <p class="logos-label">Trusted by engineering teams at</p>
+      <div class="logos-row">
+        <span>Acme Corp</span><span>Vertex Labs</span><span>Northwind</span><span>Hooli</span><span>Initech</span><span>Globex</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat"><div class="stat-num" data-count="80">0</div><div class="stat-suffix">%</div><div class="stat-label">average token savings</div></div>
+      <div class="stat"><div class="stat-num" data-count="132">0</div><div class="stat-suffix">+</div><div class="stat-label">sessions measured</div></div>
+      <div class="stat"><div class="stat-num" data-count="71">0</div><div class="stat-suffix">%</div><div class="stat-label">repeated reads blocked</div></div>
+      <div class="stat"><div class="stat-num" data-count="20">0</div><div class="stat-suffix">+</div><div class="stat-label">projects in production</div></div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="features section" id="features">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Features</span>
+        <h2>Everything your AI assistant is missing</h2>
+        <p>Claude Code is powerful, but it works blind. OpenWolf gives it eyes, memory, and a budget.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="card">
+          <div class="card-icon">🗂️</div>
+          <h3>Project file index</h3>
+          <p>Claude knows what every file contains before opening it — no more wasted reads on 2,000-token modules.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧠</div>
+          <h3>Learning memory</h3>
+          <p>Accumulates your preferences and past corrections so the same mistake never happens twice.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Token ledger</h3>
+          <p>Tracks every token in and out, per session and per project, with full historical reporting.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛡️</div>
+          <h3>Invisible enforcement</h3>
+          <p>Six hook scripts fire on every action to block duplicate reads and dead-end retries. Zero config.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Zero workflow changes</h3>
+          <p>Install once and keep working exactly as before. OpenWolf operates entirely behind the scenes.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔐</div>
+          <h3>Local-first &amp; private</h3>
+          <p>Your index and ledger never leave your machine. Open source under AGPL-3.0 — audit every line.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="how section alt" id="how-it-works">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>Up and running in three steps</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Install</h3>
+          <p>One command: <code>npm install -g openwolf</code>. Works on macOS, Linux, and Windows.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Initialize</h3>
+          <p>Run <code>openwolf init</code> in your project. It indexes your files and installs six hooks in seconds.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Save tokens</h3>
+          <p>Keep using Claude Code as usual. OpenWolf silently blocks waste and tracks every token.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Pricing</span>
+        <h2>Simple, transparent pricing</h2>
+        <p>Start free. Upgrade when your team does.</p>
+        <div class="billing-toggle">
+          <span>Monthly</span>
+          <label class="switch">
+            <input type="checkbox" id="billingSwitch" />
+            <span class="slider"></span>
+          </label>
+          <span>Yearly <em class="save-tag">save 20%</em></span>
+        </div>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Hobby</h3>
+          <div class="price"><span class="amount" data-monthly="0" data-yearly="0">$0</span><span class="period">/mo</span></div>
+          <p class="price-desc">For solo developers getting started.</p>
+          <ul>
+            <li>1 project</li>
+            <li>File index &amp; token ledger</li>
+            <li>Community support</li>
+            <li>Open-source core</li>
+          </ul>
+          <a href="#" class="btn btn-outline btn-block">Get started</a>
+        </div>
+        <div class="price-card featured">
+          <div class="popular-tag">Most popular</div>
+          <h3>Pro</h3>
+          <div class="price"><span class="amount" data-monthly="19" data-yearly="15">$19</span><span class="period">/mo</span></div>
+          <p class="price-desc">For professionals who live in the terminal.</p>
+          <ul>
+            <li>Unlimited projects</li>
+            <li>Learning memory sync</li>
+            <li>Advanced token analytics</li>
+            <li>Priority email support</li>
+          </ul>
+          <a href="#" class="btn btn-primary btn-block">Start free trial</a>
+        </div>
+        <div class="price-card">
+          <h3>Team</h3>
+          <div class="price"><span class="amount" data-monthly="49" data-yearly="39">$49</span><span class="period">/user/mo</span></div>
+          <p class="price-desc">For teams that ship together.</p>
+          <ul>
+            <li>Everything in Pro</li>
+            <li>Shared team memory</li>
+            <li>SSO &amp; audit logs</li>
+            <li>Dedicated support &amp; SLA</li>
+          </ul>
+          <a href="#" class="btn btn-outline btn-block">Contact sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="testimonials section alt" id="testimonials">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Customers</span>
+        <h2>Loved by developers everywhere</h2>
+      </div>
+      <div class="testimonial-grid">
+        <figure class="quote-card">
+          <blockquote>“Our Claude bill dropped 70% in the first month. OpenWolf paid for itself on day one.”</blockquote>
+          <figcaption><strong>Sara Kim</strong><span>Staff Engineer, Vertex Labs</span></figcaption>
+        </figure>
+        <figure class="quote-card">
+          <blockquote>“The learning memory is magic. Claude stopped repeating mistakes we'd corrected weeks ago.”</blockquote>
+          <figcaption><strong>Diego Ramos</strong><span>CTO, Northwind</span></figcaption>
+        </figure>
+        <figure class="quote-card">
+          <blockquote>“Installed it, forgot about it, and the token ledger just quietly saved us thousands.”</blockquote>
+          <figcaption><strong>Amara Osei</strong><span>Platform Lead, Initech</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq section" id="faq">
+    <div class="container narrow">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Frequently asked questions</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Does OpenWolf change how I use Claude Code?</summary>
+          <p>No. OpenWolf runs entirely through hook scripts that fire automatically. You keep your exact workflow — it just gets cheaper and smarter.</p>
+        </details>
+        <details>
+          <summary>Where is my data stored?</summary>
+          <p>Everything — file index, learning memory, token ledger — stays on your machine. Nothing is sent to external servers.</p>
+        </details>
+        <details>
+          <summary>How much will I actually save?</summary>
+          <p>Across 20 projects and 132+ sessions we measured an average token reduction of 65.8%, with some projects saving 80%. Results vary by project size and usage.</p>
+        </details>
+        <details>
+          <summary>Is it open source?</summary>
+          <p>Yes — the core is licensed under AGPL-3.0 and available on GitHub. Paid plans add team sync, analytics, and support.</p>
+        </details>
+        <details>
+          <summary>Can I cancel anytime?</summary>
+          <p>Absolutely. Plans are month-to-month (or yearly with a discount) and you can cancel from your dashboard with one click.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta section">
+    <div class="container cta-box">
+      <h2>Stop paying for wasted tokens</h2>
+      <p>Join thousands of developers giving their AI a second brain.</p>
+      <a href="#pricing" class="btn btn-light btn-lg">Get started free</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo"><span class="logo-mark">🐺</span><span class="logo-text">OpenWolf</span></a>
+        <p>A second brain for Claude Code.<br />Made with care by the OpenWolf team.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#">Changelog</a>
+        <a href="#">Roadmap</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Documentation</a>
+        <a href="#">Blog</a>
+        <a href="#">Community</a>
+        <a href="#">Status</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 OpenWolf. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="#" aria-label="GitHub">GitHub</a>
+        <a href="#" aria-label="X">X / Twitter</a>
+        <a href="#" aria-label="Discord">Discord</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
