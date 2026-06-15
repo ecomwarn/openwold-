@@ -1,0 +1,90 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: var(--nav-height);
+  padding-bottom: var(--space-8);
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+}
+
+.hero__content {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero__headline {
+  font-family: var(--font-display);
+  font-weight: var(--fw-regular);
+  margin: 0 0 var(--space-6);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hero__line { display: block; }
+.hero__line--xl { font-size: var(--fs-2xl); }
+.hero__line--md { font-size: var(--fs-xl); color: var(--color-ink-muted); }
+.hero__line--sm { font-size: var(--fs-lg); color: var(--color-ink-muted); font-family: var(--font-sans); margin-top: var(--space-3); }
+.hero__line--italic { font-style: italic; }
+
+@media (min-width: 768px) {
+  .hero__line--xl { font-size: var(--fs-3xl); }
+  .hero__line--md { font-size: var(--fs-2xl); }
+  .hero__line--sm { font-size: var(--fs-md); }
+}
+
+@media (min-width: 1100px) {
+  .hero__line--xl { font-size: var(--fs-4xl); }
+}
+
+.hero__cta-row {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-5);
+}
+
+.hero__cta {
+  padding: 0.95rem 1.8rem;
+  font-size: var(--fs-base);
+}
+
+.hero__legal {
+  margin-top: var(--space-4);
+  font-size: var(--fs-xs);
+}
+
+.hero__legal-link { text-decoration: underline; }
+
+/* Decorative placeholder image slots behind content */
+.hero__decor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.55;
+  filter: blur(0.5px);
+}
+
+.hero__decor--a {
+  width: 180px;
+  top: 18%;
+  left: 4%;
+  transform: rotate(-6deg);
+}
+
+.hero__decor--b {
+  width: 200px;
+  bottom: 12%;
+  right: 5%;
+  transform: rotate(7deg);
+}
+
+@media (min-width: 768px) {
+  .hero__decor--a { width: 260px; top: 20%; left: 6%; }
+  .hero__decor--b { width: 280px; bottom: 12%; right: 7%; }
+}

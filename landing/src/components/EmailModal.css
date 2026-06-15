@@ -1,0 +1,111 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+  animation: modal-fade 0.18s var(--ease);
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.modal__panel {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-modal);
+  padding: var(--space-7);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  animation: modal-pop 0.22s var(--ease);
+}
+
+.modal__close {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-ink-muted);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+}
+
+.modal__close:hover { background: var(--color-bg-alt); color: var(--color-ink); }
+
+.modal__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-regular);
+}
+
+.modal__sub { margin: 0; font-size: var(--fs-sm); }
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.modal__input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-base);
+  font-family: inherit;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  outline: none;
+  transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+
+.modal__input:focus {
+  border-color: var(--color-ink);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+}
+
+.modal__input.has-error {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.12);
+}
+
+.modal__error {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--color-error);
+}
+
+.modal__submit { width: 100%; padding: 0.85rem 1rem; }
+
+.modal__success {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@keyframes modal-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modal-pop {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
